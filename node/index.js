@@ -24,10 +24,11 @@ app.get('/', (req, res) => {
     connection.query(select_query, function (err, result) {
         if (err) throw err
         // console.log(result)
-        let text = "<h1>Full Cycle Rocks!</h1>"
+        let text = "<h1>Full Cycle Rocks!</h1><ul>"
         for (let i = 0; i < result.length; i++){
-            text += "<br>" + result[i].name
+            text += "<li>" + result[i].name + "</li>"
         }
+        text += "</ul>"
         // console.log(text)
         res.send(text)
     })

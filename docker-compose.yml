@@ -12,6 +12,8 @@ services:
     environment:
       - MYSQL_DATABASE=nodedb
       - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - node-network
 
   app: 
     image: node
@@ -27,3 +29,21 @@ services:
     tty: true
     depends_on:
       - db
+    networks:
+      - node-network
+
+  proxy:
+    image: proxy
+    build:
+      context: ./nginx
+    container_name: proxy
+    ports:
+      - 8080:80
+    networks:
+      - node-network
+    depends_on:
+      - app
+
+networks:
+  node-network:
+    driver: bridge

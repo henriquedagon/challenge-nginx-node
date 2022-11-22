@@ -25,7 +25,7 @@ services:
     build: 
       context: node
     volumes:
-      - ./node:/usr/src/app
+      - ./node/index.js:/usr/src/app/index.js
     ports:
       - 3000:3000
     tty: true

@@ -12,6 +12,16 @@ const config = {
 const mysql = require('mysql')
 const connection = mysql.createConnection(config)
 
+// Creating database
+const creation_query = ' \
+CREATE TABLE IF NOT EXISTS `people` ( \
+    `id` int(11) NOT NULL AUTO_INCREMENT, \
+    `name` varchar(255) DEFAULT NULL, \
+    PRIMARY KEY (`id`) \
+  ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1; \
+'
+connection.query(creation_query)
+
 // Inserting
 const insert_query = `insert into people(name) values('Henrique')`
 connection.query(insert_query)
